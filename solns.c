@@ -1,5 +1,4 @@
 /* Enter your solutions in this file */
-#include <stdio.h>
 include <stdio.h>
 #include <assert.h>
 
@@ -71,3 +70,4 @@ int min(int b[], int n){
           e[i]=n;
         return i;
       }
+
