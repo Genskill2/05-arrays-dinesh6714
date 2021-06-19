@@ -1,73 +1,90 @@
 /* Enter your solutions in this file */
 include <stdio.h>
-#include <assert.h>
-
-int max(int a[],int n){
-  int max= a[0];
-  for(int i=0; i<n; i++){
-    if(max < a[i]){
-    max=a[i];
-  }
-}
-return max;
-}
-
-
-int min(int b[], int n){
-  int min = b[0];
-  for(int i=0; i<n; i++){
-    if(min > b[i]){
-       min = b[i];
-       }
-       }
-       return min;
-       }
-       
-  
-       float average(int c[], int n){
-         float average =0;
-         for(int i=0; i<n; i++){
-           average+= c[i];
-         }
-         average = average/n;
-         return average;
-       }
-       
-       
-       int mode(int d[], int n){
-         int count = 0;
-         int mode = 0;
-         for(int i=0; i<n; i++){
-           int counts =0;
-           for(int j=0; j<n; j++){
-             if(d[j]==d[i]){
-               counts++;
-             }
-           }
-           if(counts > count)
-             count=counts;
-           mode = d[i];
-         }
-          return mode;
-             }
-             
-             
-      int factors(int n,int e[]){
-        int i=0;
-        while(n%2==0){
-          e[i]=2;
-          i++;
-          n=n/2;
+/*max function*/
+int max(int a[], int n){
+int m=0 ;
+ for ( int i = 0; i < n ; i++){
+    if (a[i] > m){
+         m = a[i];
         }
-        for(int j=3; j<=n;j++){
-          while(n%j==0){
-            e[i]=j;
-            i++;
-            n=n/j;
-          }
-        }
-        if(n>2)
-          e[i]=n;
-        return i;
       }
+  return m;
+}
+
+/*min function*/
+int min(int a[], int n){
+int min = a[0] ;
+     for(int i=1 ; i<n ; i++){
+       if(a[i]<min)
+       min = a[i];
+  }
+ return min;
+}
+/*average function*/
+float average(int a[], int n){
+ float sum = 0 ;
+     for(int i=0; i<n ; i++){
+       sum = sum + a[i];
+
+    }
+    return sum/n;
+}
+/*mode function*/
+int mode(int a[], int length){
+   int n = max(a,length);
+   int p = min(a,length);
+   int counts[100],  d=-1;
+       for(int i = p; i <= n ; i++){
+         int c = 0;
+          for ( int j=0; j<length; j++){
+            if(a[j]==i){
+               c++;
+          }
+           
+      }   
+     counts[++d] = c;
+  }
+  
+  int b = 0,f = 0 ;
+  for (int i=0 ; i<=d ; i++){
+    if ( counts[i] > b ){
+       b = counts[i];
+       f = i+p;
+     }
+   }
+    return f;
+}
+/*factors function*/
+int isprime(int n){
+  for (int i = 2; i<n; i++){
+    if(n%i==0){
+       return 0;
+    }
+    else{
+     return 1;
+     }
+  }
+
+}
+
+int factors(int x, int arr[]){
+ int cnt=0;
+   for( int i = 2; i < x; i++){
+      while( x % i == 0){
+                if(isprime(i)){
+                     arr[cnt] = i ;
+                     x = x/i ; 
+                     cnt++;
+                     }
+                          
+                            if (isprime(x)){
+                               arr[cnt] = x;
+                              
+                               
+                           }
+                }
+        
+     }
+   return cnt+1;
+ }
 
